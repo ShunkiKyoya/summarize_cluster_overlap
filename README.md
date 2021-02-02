@@ -43,8 +43,8 @@ You need to download `seeds_dataset.txt` from there
 and put it in the `datasets` directory.
 * The **yeast** dataset is downloaded from
 http://archive.ics.uci.edu/ml/datasets/yeast.
-You need to download yeast.data from there
-and put it in the datasets directory.
+You need to download `yeast.data` from there
+and put it in the `datasets` directory.
 * The **wisconsin breast cancer** dataset is loaded
-from the function the in the scikit-learn package.
-Additional procedures are not needed to obtain it.
+from the function the in the `scikit-learn` package.
+Additional procedures are not required.
