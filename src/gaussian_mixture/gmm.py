@@ -236,3 +236,14 @@ class GMMModelSelection():
             covariances=self.covariances_
         )
         return analysis.prob_latent(X)
+
+    def predict(self, X):
+        """Predict latent labels.
+
+        Args:
+            X (ndarray): Data (shape = (N, D)).
+        Returns:
+            ndarray: predicted labels (shape = (N,)).
+        """
+        prob_latent_ = self.prob_latent(X)
+        return np.argmax(prob_latent_, axis=1)
