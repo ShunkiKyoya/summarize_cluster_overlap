@@ -11,7 +11,13 @@ Refer to the section Real dataset for this.
 
 ## Usage
 
-TODO
+### Overview
+* The function `load_data` is used to load and process the real dataset.
+* The classes `GMMUtils` and `GMMModelSelection` are used to create the probabilities of latent variables from the predefined and estimated Gaussian mixture models, respectively.
+* The classes `(Ent / Nent1 / DEMP / DEMP2 / MC / NMC)MergeComponents`
+handle the merging algorithm
+with their method `fit`.
+Their method `clustering_summarization` create the clustering summary of the fitted data.
 
 ## Real dataset
 
