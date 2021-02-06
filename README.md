@@ -2,12 +2,14 @@
 
 Python programs for merging mixture components and summarizing their results.
 Currently, it targets the problem of the Gaussian mixtures.
+Programs for running the comparison methods are also provided.
 
 ## Required packages
 
 Required python packages are listed in `Pipfile` and `Pipfile.lock` files.
-Note that additional installments are needed for loading real datasets.
-Refer to the section Real dataset for this.
+Note that additional installments are needed for loading real datasets
+and running comparison methods.
+Refer to the section Real dataset and Comparison Method for them.
 
 ## Usage
 
@@ -18,6 +20,16 @@ Refer to the section Real dataset for this.
 handle the merging algorithm
 with their method `fit`.
 Their method `clustering_summarization` create the clustering summary of the fitted data.
+
+### Jupyter
+
+We provide the following five `.ipynb` files to show the usage of this program for experiments. All of the experimental results can be reproduced by executing them.
+
+* `experiment_artificial.ipynb` ... Experiment for the artificial dataset.
+* `experiment_real.ipynb` ... Comparing F-measure and ARI for the real dataset.
+* `dataset_outlier.ipynb` ... Investigating the relationships between the real datasets and proportion of outlier points.
+* `clustering_summarization.ipynb` ... Showing how to obtain the clustering summarization.
+* `correlation_mc_nmc_entropy.ipynb` ... Investigating the correlations between MC/NMC and entropy.
 
 ## Real dataset
 
@@ -54,3 +66,15 @@ and put it in the `datasets` directory.
 * The **wisconsin breast cancer** dataset is loaded
 from the function the in the `scikit-learn` package.
 Additional procedures are not required.
+
+# Comparison Method
+
+`GMMModelSelection` can be used for GMM + BIC and GMM + DNML
+by setting `mode='GMM_BIC'` and `mode='GMM_DNML'`, respectively.
+`MixtureOfMixture` is a wrapper of MixMix. To run this, additional R packages are required. See [1] for the datail.
+
+# References
+
+[1] Gertraud Malsiner-Walli, Sylvia Fruhwirth-Schnatter and Bettina Grun.
+Identifying Mixtures of Mixtures Using Bayesian Estimation.
+*Journal of Computational and Graphical Statics*, 26(2), 285--295, 2017.
