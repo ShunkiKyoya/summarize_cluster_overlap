@@ -67,13 +67,13 @@ and put it in the `datasets` directory.
 from the function the in the `scikit-learn` package.
 Additional procedures are not required.
 
-# Comparison Method
+## Comparison Method
 
 `GMMModelSelection` can be used for GMM + BIC and GMM + DNML
 by setting `mode='GMM_BIC'` and `mode='GMM_DNML'`, respectively.
 `MixtureOfMixture` is a wrapper of MixMix. To run this, additional R packages are required. See [1] for the datail.
 
-# References
+## References
 
 [1] Gertraud Malsiner-Walli, Sylvia Fruhwirth-Schnatter and Bettina Grun.
 Identifying Mixtures of Mixtures Using Bayesian Estimation.
