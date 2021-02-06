@@ -1,6 +1,6 @@
 """Utilize Mixture of Mixture Model.
 
-R programs are copied from the following reference.
+Most of the R programs are copied from the following reference.
 
 References:
     Gertraud Malsiner-Walli, Sylvia Fruhwirth-Schnatter and Bettina Grun.
@@ -22,6 +22,7 @@ class MixtureOfMixture():
         L=4,
         M=4000,
         burnin=4000,
+        is_dlbcl=False,
         random_state=0
     ):
         """
@@ -30,12 +31,14 @@ class MixtureOfMixture():
             L (int): The initial number of lower components.
             M (int): The number of iterations in MCMC.
             burnin (int): The number of burnin.
+            is_dlbcl (bool): Set True only when the DLBCL dataset are used.
             random_state (int): random state.
         """
         self.K = K
         self.L = L
         self.M = M
         self.burnin = burnin
+        self.is_dlbcl = is_dlbcl
         self.random_state = random_state
 
     def fit(self, X):
@@ -57,7 +60,10 @@ class MixtureOfMixture():
         r.assign("my_seed", self.random_state)
         path_here = os.path.dirname(__file__)
         r("source(\"{}/rmvnormMix.R\")".format(path_here))
-        r("source(\"{}/MixOfMix_estimation.R\")".format(path_here))
+        if self.is_dlbcl:
+            r("source(\"{}/MixOfMix_estimation_DLBCL.R\")".format(path_here))
+        else:
+            r("source(\"{}/MixOfMix_estimation.R\")".format(path_here))
         r("source(\"{}/MixOfMix_identification.R\")".format(path_here))
         self.log_ = r("source(\"{}/Analysis.R\")".format(path_here))
         self.K_pred_ = r.get("K0_sim")

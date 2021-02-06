@@ -206,14 +206,14 @@ MixOfMix_estimation <- function(y, S_0, I_0, mu_0, sigma_0, eta_0, e0,
         if (b_gig_k[j] == 0) 
           b_gig_k[j] <- 1e-07  #to catch the case if mu_j[j,k,]~~b0k_j[j]
         ran <- GIGrvg::rgig(1, lambda = p_gig, chi = b_gig_k[j], psi = a_gig)
-        lam_j[j, k] <- ran
-        # lam_j[j, k] <- 1
+        # lam_j[j, k] <- ran  # DLBCL ???
+        lam_j[j, k] <- 1  # DLBCL ???
       }
       
       ## (4b): sample hyperparameter C0k conditionally on sigma_kl:
-      C0k_j[, , k] <- bayesm::rwishart(2 * gn, 0.5 * chol2inv(chol(G0 + rowSums(invsigma_j[, , 
-                                                                                           k, , drop = F], dims = 2))))$W  #from package 'bayesm'
-      # C0k_j[, , k] <- gn * chol2inv(chol(G0 + rowSums(invsigma_j[, , k, , drop = F], dims = 2)))
+      # C0k_j[, , k] <- bayesm::rwishart(2 * gn, 0.5 * chol2inv(chol(G0 + rowSums(invsigma_j[, , 
+                                                                                          #  k, , drop = F], dims = 2))))$W  #from package 'bayesm'
+      C0k_j[, , k] <- gn * chol2inv(chol(G0 + rowSums(invsigma_j[, , k, , drop = F], dims = 2)))  # DLBCL ???
 
       ## (4c): sample b0k from N(1/L*sum(mu_j[,k,]);1/L*B0 )k
       invB0k_j[, , k] <- invB0k_0[, , k]/lam_j[, k]
